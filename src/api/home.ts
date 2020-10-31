@@ -10,3 +10,13 @@ export interface LocalType {
   count: number | string;
   rate: number | string;
 }
+
+export interface OnlineCelebrityType {
+  nickname: string;
+  site: string;
+  img: string;
+  avatar: string;
+  like: number | string;
+  has: boolean;
+  list?: Array<object>;
+}

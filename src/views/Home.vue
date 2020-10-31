@@ -51,6 +51,32 @@
           </Paisajes>
         </div>
       </div>
+      <!-- 网红圈 -->
+      <div class="local">
+        <div class="local-header">
+          <span>网红圈</span>
+          <span>更多</span>
+        </div>
+        <div class="online-celebrity">
+          <div class="online-celebrity-container">
+            <div class="online-celebrity-container-left">
+              <img :src="onlineCelebrityData.img" alt="">
+            </div>
+            <div class="online-celebrity-container-right">
+              <img :src="onlineCelebrityData.avatar" alt="">
+              <p>{{ onlineCelebrityData.nickname }}</p>
+              <div class="like-container">
+                <img :src="[onlineCelebrityData.has ? likeImages.active : likeImages.defalut]" alt="">
+                <p>{{ onlineCelebrityData.like }}</p>
+              </div>
+            </div>
+          </div>
+          <div class="site-container">
+            <img src="@/assets/images/location.png" alt="">
+            <span>{{ onlineCelebrityData.site }}</span>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -59,7 +85,7 @@
 import { defineComponent, ref, reactive } from 'vue'
 import PopularDestination from '@/components/PopularDestination.vue'
 import Paisajes from '@/components/Paisajes.vue'
-import { PopularDestinationType, LocalType } from '@/api/home'
+import { PopularDestinationType, LocalType, OnlineCelebrityType } from '@/api/home'
 
 export default defineComponent({
   name: 'Home',
@@ -67,6 +93,11 @@ export default defineComponent({
     const storeData = ref('hello world')
     const searchValue = ref('')
     const active = ref(0)
+
+    const likeImages = {
+      active: require('@/assets/images/likeActive.png'),
+      defalut: require('@/assets/images/like.png')
+    }
 
     const popularDestinationData: PopularDestinationType = reactive({
       img: 'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2563930385,406813023&fm=26&gp=0.jpg',
@@ -95,12 +126,23 @@ export default defineComponent({
       }
     ])
 
+    const onlineCelebrityData: OnlineCelebrityType = reactive({
+      nickname: 'Alan Syndra',
+      site: '日本名古屋',
+      img: 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=874238546,3629119602&fm=26&gp=0.jpg',
+      avatar: 'https://hbimg.huabanimg.com/0a100c4b64a0b7e2e38230fe91b19fe4c42c6efe708e8-5C8mOM_fw658/format/webp',
+      like: 9999,
+      has: false
+    })
+
     return {
       storeData,
       searchValue,
       active,
       popularDestinationData,
-      localData
+      localData,
+      onlineCelebrityData,
+      likeImages
     }
   },
   components: {
@@ -112,10 +154,10 @@ export default defineComponent({
 
 <style lang="scss" scoped>
   .home {
-    width: 100%;
-    height: 100%;
+    @include initPage();
+    background-color: initial;
     padding-top: 50px;
-    box-sizing: border-box;
+    padding-bottom: 120px;
     &-header {
       padding: 0 30px;
       margin-bottom: 40px;
@@ -140,11 +182,16 @@ export default defineComponent({
     }
     &-content {
       padding: 40px 30px 0;
+      & > div:first-child ~ .local:nth-child(2) {
+        margin-top: 50px;
+      }
       .local {
         &-header {
           display: flex;
           justify-content: space-between;
           margin-bottom: 30px;
+          font-size: $font-large;
+          font-weight: $font-weight;
           & > span:last-child {
             color: $color-gray;
             font-size: $font-small;
@@ -159,6 +206,57 @@ export default defineComponent({
             margin-top: 10px;
             & > span {
               font-size: $font-medium;
+            }
+          }
+        }
+        .online-celebrity {
+          &-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            &-left {
+              width: 430px;
+              & > img {
+                width: 100%;
+                height: 240px;
+              }
+            }
+            &-right {
+              display: flex;
+              flex-direction: column;
+              align-items: flex-end;
+              width: 200px;
+              box-sizing: border-box;
+              & > img {
+                width: 100px;
+                height: 100px;
+                border-radius: 50%;
+              }
+              & > p {
+                margin: 20px 0 20px;
+              }
+              .like-container {
+                align-self: flex-end;
+                width: 100px;
+                text-align: center;
+                & > img {
+                  width: 48px;
+                  height: 48px;
+                }
+              }
+            }
+          }
+          .site-container {
+            display: flex;
+            align-items: center;
+            padding: 30px 0 0 20px;
+            & > img {
+              width: 32px;
+              height: 32px;
+            }
+            & > span {
+              margin-left: 20px;
+              color: $color-gray;
             }
           }
         }

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="main-container">
     <component :is="currentView"></component>
     <van-tabbar v-model="currentView"
       active-color="#4cd4c8"
@@ -35,5 +35,8 @@ export default defineComponent({
 </script>
 
 <style scoped>
-
+  .main-container {
+    width: 100%;
+    height: 100%;
+  }
 </style>
