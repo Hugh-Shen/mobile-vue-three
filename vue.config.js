@@ -17,7 +17,7 @@ module.exports = {
     'style-resources-loader': {
       preProcessor: 'scss',
       patterns: [
-        resolve('src/assets/styles/reset.scss'),
+        resolve('src/assets/styles/reset.css'),
         resolve('src/assets/styles/variable.scss')
       ]
     }

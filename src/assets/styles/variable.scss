@@ -1,20 +1,26 @@
 /* 颜色 */
 $color-white: white;
-$color-theme: #3780f7;
+$color-black: #333;
+$color-theme: #4cd4c8;
+$color-sub: #9affc8;
+$color-gray: #787882;
+$color-light: #fafafa;
 $color-line: #f3f3f3;
 
 /* 默认文字大小 */
-$font-base: 24px;
+$font-base: 26px;
+$font-small: 14px;
+$font-medium: 16px;
 $font-large: 30px;
 $font-oversized: 35px;
-$color-little: 20px;
+$font-little: 20px;
 $font-weight: 700;
 
-/* border common */
-$border-common: 1px solid $color-line;
+/* border defalut */
+$border-defalut: 2px solid $color-line;
 
 /* 页面初始样式 */
-@mixin init-page($width:100%, $height:100%, $fontSize:$font-base) {
+@mixin initPage($width:100%, $height:100%, $fontSize:$font-base) {
   width: $width;
   height: $height;
   overflow: hidden;
@@ -22,4 +28,14 @@ $border-common: 1px solid $color-line;
   font-size: $fontSize;
   box-sizing: border-box;
   background: #efefef;
+}
+
+/* 三角形 */
+
+@mixin triangle {
+  width: 0;
+  height: 0;
+  border-top: 10px solid $color-black;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
 }
