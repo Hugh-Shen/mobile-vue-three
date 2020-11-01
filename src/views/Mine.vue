@@ -51,8 +51,8 @@ export default defineComponent({
   setup () {
     const userData: UserType = reactive({
       nickname: 'Hugh Shen',
-      introduce: '极客，睡觉觉，打豆豆',
-      avatar: 'https://hbimg.huabanimg.com/8abf75ea3b743e1e3e0ffb8bdacddd30a95b45ada3bd-6EWcL8_fw658/format/webp',
+      introduce: '睡觉觉，打豆豆',
+      avatar: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=2553751035,1196143802&fm=26&gp=0.jpg',
       attention: 211111,
       visitor: 222222,
       praise: 8221
@@ -60,17 +60,17 @@ export default defineComponent({
     const footprintData: Array<FootprintType> = reactive([
       {
         site: '十堰',
-        img: 'https://hbimg.huabanimg.com/3e531f3374a05dd0a770d0490adf94ddbcd82b8216082-3G0t2d_fw658/format/webp',
-        tag: '武当雪景'
+        img: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1604254947357&di=0e57fccf245293616eaf3f012744b552&imgtype=0&src=http%3A%2F%2Fimage.yjcf360.com%2Fcraw%2Fyuantuimg%2F201812%2F28212534k99v.jpg',
+        tag: '问道武当'
       },
       {
         site: '武汉',
-        img: 'https://hbimg.huabanimg.com/1bff65671824a61c37e40a03075285f42f328c453a7ff-T9ncsb_fw658/format/webp',
+        img: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1604254990393&di=55553e5e6439e9b2ec93e06341285ead&imgtype=0&src=http%3A%2F%2Fimg.pconline.com.cn%2Fimages%2Fupload%2Fupc%2Ftx%2Fitbbs%2F1509%2F25%2Fc46%2F13195762_1443185969714_mthumb.jpg',
         tag: '黄鹤一去不复返'
       },
       {
         site: '荆州',
-        img: 'https://hbimg.huabanimg.com/383f7465c4b769a15653aed79feadaf80de6ea9714cca1-NFa5l8_fw658/format/webp',
+        img: 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3687881454,3960043115&fm=26&gp=0.jpg',
         tag: '触摸灵魂，大爱荆州'
       }
     ])
@@ -157,7 +157,7 @@ export default defineComponent({
       border-radius: 40px 40px 0 0;
       &-details {
         width: 100%;
-        height: 180px;
+        height: 140px;
         border-bottom: $border-defalut;
         &-item {
           display: inline-flex;
@@ -170,7 +170,7 @@ export default defineComponent({
           & > p:first-child {
             margin-bottom: 20px;
             color: $color-gray;
-            font-size: $font-medium;
+            font-size: $font-base;
           }
         }
       }

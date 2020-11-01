@@ -9,11 +9,11 @@ $color-line: #f3f3f3;
 
 /* 默认文字大小 */
 $font-base: 26px;
-$font-small: 14px;
-$font-medium: 16px;
+$font-small: 18px;
+$font-medium: 20px;
 $font-large: 30px;
 $font-oversized: 35px;
-$font-little: 20px;
+$font-little: 24px;
 $font-weight: 700;
 
 /* border defalut */
@@ -27,7 +27,6 @@ $border-defalut: 2px solid $color-line;
   overflow-y: auto;
   font-size: $fontSize;
   box-sizing: border-box;
-  background: #efefef;
 }
 
 /* 三角形 */

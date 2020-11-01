@@ -18,9 +18,6 @@ export default defineComponent({
     site: {
       type: String
     }
-  },
-  setup () {
-    return {}
   }
 })
 </script>

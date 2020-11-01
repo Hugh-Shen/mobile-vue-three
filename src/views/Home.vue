@@ -2,7 +2,7 @@
   <div class="home">
     <div class="home-header">
       <div class="home-header-site">
-        <span>湖北</span>
+        <span>杭州</span>
         <div class="triangle"></div>
       </div>
       <van-search
@@ -21,16 +21,7 @@
       <van-tab title="周边">
         <div class="item-container">
           <PopularDestination :popularDestinationData="popularDestinationData" />
-        </div>
-      </van-tab>
-      <van-tab title="境内">内容 2</van-tab>
-      <van-tab title="泰国">内容 2</van-tab>
-      <van-tab title="日本">内容 2</van-tab>
-      <van-tab title="欧美">内容 2</van-tab>
-      <van-tab title="港澳">内容 2</van-tab>
-    </van-tabs>
-
-    <div class="home-content">
+          <div class="home-content">
       <!-- 当地必玩 -->
       <div class="local">
         <div class="local-header">
@@ -40,7 +31,7 @@
 
         <div class="local-main">
           <Paisajes v-for="(item, index) in localData"
-            :key="item.area + index"
+            :key="index"
             :site="item.site"
             :img="item.img"
           >
@@ -75,9 +66,39 @@
             <img src="@/assets/images/location.png" alt="">
             <span>{{ onlineCelebrityData.site }}</span>
           </div>
+          <!-- 其它网红列表 -->
+          <div class="online-celebrity-other" v-if="onlineCelebrityData.list">
+            <div class="online-celebrity-other-item"
+              v-for="(item, index) in onlineCelebrityData.list"
+              :key="item.nickname + index"
+            >
+              <div class="travel-list">
+                <div class="travel-list-item"
+                  v-for="(item2, index2) in item.travel"
+                  :key="item2.site + index2"
+                >
+                  <img :src="item2.img" alt="">
+                  <p>{{ item2.site }}</p>
+                </div>
+              </div>
+
+              <div class="user-info">
+                <img :src="item.avatar" alt="">
+                <p>{{ item.nickname }}</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
+        </div>
+      </van-tab>
+      <van-tab title="境内">内容 2</van-tab>
+      <van-tab title="泰国">内容 2</van-tab>
+      <van-tab title="日本">内容 2</van-tab>
+      <van-tab title="欧美">内容 2</van-tab>
+      <van-tab title="港澳">内容 2</van-tab>
+    </van-tabs>
   </div>
 </template>
 
@@ -108,19 +129,19 @@ export default defineComponent({
     const localData: Array<LocalType> = reactive([
       {
         site: '森林树屋',
-        img: 'https://hbimg.huabanimg.com/dd823fb847c86c6e82ad82c32fbc27f056ecb05449052-OU5foT_fw658/format/webp',
+        img: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1604234124600&di=db9ce3d09ac3f0218dca54198fa84a3b&imgtype=0&src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2F486520bd543f9f205dbc028f658ad0da03367a2944475-IUhgxr_fw658',
         count: 341,
         rate: 4
       },
       {
         site: '潺潺溪流',
-        img: 'https://hbimg.huabanimg.com/0fe8f1e48d3db64b910975b9230f2f18d358ef9a2b418-rQn6TL_fw658/format/webp',
+        img: 'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=4292315981,3261371966&fm=26&gp=0.jpg',
         count: 34,
         rate: 4
       },
       {
         site: '青树古镇',
-        img: 'https://hbimg.huabanimg.com/fb4dbd5d35270f59171b7434bf5a67b53c14bd17b628d-XnXLDa_fw658/format/webp',
+        img: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1604234320377&di=f9a13e104a7b5dbf3e8acf58b08633e3&imgtype=0&src=http%3A%2F%2Fimg.pconline.com.cn%2Fimages%2Fupload%2Fupc%2Ftx%2Fphotoblog%2F1203%2F09%2Fc6%2F10831124_10831124_1331292126625_mthumb.jpg',
         count: 873,
         rate: 4
       }
@@ -128,11 +149,27 @@ export default defineComponent({
 
     const onlineCelebrityData: OnlineCelebrityType = reactive({
       nickname: 'Alan Syndra',
-      site: '日本名古屋',
+      site: '日本 名古屋',
       img: 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=874238546,3629119602&fm=26&gp=0.jpg',
-      avatar: 'https://hbimg.huabanimg.com/0a100c4b64a0b7e2e38230fe91b19fe4c42c6efe708e8-5C8mOM_fw658/format/webp',
+      avatar: 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=301987003,3127153161&fm=26&gp=0.jpg',
       like: 9999,
-      has: false
+      has: false,
+      list: [
+        {
+          nickname: 'Angel Wang',
+          avatar: 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2078843677,2316840121&fm=26&gp=0.jpg',
+          travel: [
+            {
+              img: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1604235074861&di=df6b8674563759f6184dae3aa2a1c38e&imgtype=0&src=http%3A%2F%2Fyouimg1.c-ctrip.com%2Ftarget%2Ffd%2Ftg%2Fg1%2FM07%2F8D%2F89%2FCghzflUNi3mAIQuoAAM8cM0BMng608.jpg',
+              site: '法国 巴黎'
+            },
+            {
+              img: 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3103840908,2920508027&fm=26&gp=0.jpg',
+              site: '英国 伦敦'
+            }
+          ]
+        }
+      ]
     })
 
     return {
@@ -155,7 +192,6 @@ export default defineComponent({
 <style lang="scss" scoped>
   .home {
     @include initPage();
-    background-color: initial;
     padding-top: 50px;
     padding-bottom: 120px;
     &-header {
@@ -181,7 +217,7 @@ export default defineComponent({
       box-sizing: border-box;
     }
     &-content {
-      padding: 40px 30px 0;
+      padding-top: 60px;
       & > div:first-child ~ .local:nth-child(2) {
         margin-top: 50px;
       }
@@ -215,10 +251,11 @@ export default defineComponent({
             justify-content: space-between;
             align-items: center;
             &-left {
-              width: 430px;
+              width: 440px;
               & > img {
                 width: 100%;
                 height: 240px;
+                border-radius: 20px;
               }
             }
             &-right {
@@ -257,6 +294,46 @@ export default defineComponent({
             & > span {
               margin-left: 20px;
               color: $color-gray;
+            }
+          }
+          .online-celebrity-other {
+            margin-top: 60px;
+            &-item {
+              display: flex;
+              justify-content: space-between;
+              .travel-list {
+                display: flex;
+                & > div:nth-child(2) {
+                  margin-left: 20px;
+                }
+                &-item {
+                  & > img {
+                    width: 210px;
+                    height: 160px;
+                    border-radius: 20px;
+                  }
+                  & > p {
+                    margin-top: 20px;
+                    color: $color-gray;
+                    text-align: center;
+                  }
+                }
+              }
+              .user-info {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-end;
+                width: 200px;
+                box-sizing: border-box;
+                & > img {
+                  width: 100px;
+                  height: 100px;
+                  border-radius: 50%;
+                }
+                & > p {
+                  margin-top: 20px;
+                }
+              }
             }
           }
         }

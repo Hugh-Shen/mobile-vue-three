@@ -58,8 +58,9 @@ export default defineComponent({
       margin-left: 40px;
       background: linear-gradient(180deg, $color-sub, $color-theme);
       & > div {
-        max-width: 80px;
+        max-width: 70px;
         line-height: 40px;
+        text-align: center;
         font-weight: 500;
         color: $color-white;
       }
