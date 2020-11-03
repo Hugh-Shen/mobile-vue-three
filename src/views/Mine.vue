@@ -49,7 +49,7 @@ import { UserType, FootprintType } from '@/api/mine'
 
 export default defineComponent({
   setup () {
-    const userData: UserType = reactive({
+    const userData = reactive<UserType>({
       nickname: 'Hugh Shen',
       introduce: '睡觉觉，打豆豆',
       avatar: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=2553751035,1196143802&fm=26&gp=0.jpg',
@@ -57,7 +57,7 @@ export default defineComponent({
       visitor: 222222,
       praise: 8221
     })
-    const footprintData: Array<FootprintType> = reactive([
+    const footprintData = reactive<Array<FootprintType>>([
       {
         site: '十堰',
         img: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1604254947357&di=0e57fccf245293616eaf3f012744b552&imgtype=0&src=http%3A%2F%2Fimage.yjcf360.com%2Fcraw%2Fyuantuimg%2F201812%2F28212534k99v.jpg',

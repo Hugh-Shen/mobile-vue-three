@@ -64,12 +64,12 @@ export default defineComponent({
       active: require('@/assets/images/watchActive.png')
     }
 
-    const newRecommendedData: NewRecommendedType = reactive({
+    const newRecommendedData = reactive<NewRecommendedType>({
       img: 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=441138092,3044299097&fm=26&gp=0.jpg',
       destination: '日本',
       journey: '4天3夜'
     })
-    const travelDiary: Array<TravelDiary> = reactive([
+    const travelDiary = reactive<Array<TravelDiary>>([
       {
         nickname: 'Taylor Swift',
         avatar: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=285319453,2165089546&fm=26&gp=0.jpg',

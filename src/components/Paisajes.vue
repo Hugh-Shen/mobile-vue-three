@@ -1,5 +1,7 @@
+/* eslint-disable vue/custom-event-name-casing */
+/* eslint-disable vue/custom-event-name-casing */
 <template>
-  <div class="paisajes">
+  <div class="paisajes" @click="handleClickToEvent">
     <img :src="img" alt="">
     <p>{{ site }}</p>
     <slot></slot>
@@ -17,6 +19,21 @@ export default defineComponent({
     },
     site: {
       type: String
+    },
+    dataObj: {
+      type: Object,
+      default: () => {
+        return {}
+      }
+    }
+  },
+  setup (props, { emit }) {
+    const handleClickToEvent = () => {
+      emit('navigation-to-details', props.dataObj)
+    }
+
+    return {
+      handleClickToEvent
     }
   }
 })

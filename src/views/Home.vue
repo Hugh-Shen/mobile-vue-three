@@ -34,6 +34,8 @@
             :key="index"
             :site="item.site"
             :img="item.img"
+            :dataObj="item"
+            @navigation-to-details="navigationToDetails"
           >
             <div class="rate-container">
               <van-rate v-model="item.rate" readonly  size="10" />
@@ -104,6 +106,7 @@
 
 <script lang="ts">
 import { defineComponent, ref, reactive } from 'vue'
+import { useRouter } from 'vue-router'
 import PopularDestination from '@/components/PopularDestination.vue'
 import Paisajes from '@/components/Paisajes.vue'
 import { PopularDestinationType, LocalType, OnlineCelebrityType } from '@/api/home'
@@ -111,6 +114,7 @@ import { PopularDestinationType, LocalType, OnlineCelebrityType } from '@/api/ho
 export default defineComponent({
   name: 'Home',
   setup () {
+    const router = useRouter()
     const storeData = ref('hello world')
     const searchValue = ref('')
     const active = ref(0)
@@ -120,30 +124,33 @@ export default defineComponent({
       defalut: require('@/assets/images/like.png')
     }
 
-    const popularDestinationData: PopularDestinationType = reactive({
+    const popularDestinationData = reactive<PopularDestinationType>({
       img: 'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2563930385,406813023&fm=26&gp=0.jpg',
       area: '杭州',
       city: '西湖'
     })
 
-    const localData: Array<LocalType> = reactive([
+    const localData = reactive<Array<LocalType>>([
       {
         site: '森林树屋',
         img: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1604234124600&di=db9ce3d09ac3f0218dca54198fa84a3b&imgtype=0&src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2F486520bd543f9f205dbc028f658ad0da03367a2944475-IUhgxr_fw658',
         count: 341,
-        rate: 4
+        rate: 4,
+        id: '1'
       },
       {
         site: '潺潺溪流',
         img: 'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=4292315981,3261371966&fm=26&gp=0.jpg',
         count: 34,
-        rate: 4
+        rate: 4,
+        id: '2'
       },
       {
         site: '青树古镇',
         img: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1604234320377&di=f9a13e104a7b5dbf3e8acf58b08633e3&imgtype=0&src=http%3A%2F%2Fimg.pconline.com.cn%2Fimages%2Fupload%2Fupc%2Ftx%2Fphotoblog%2F1203%2F09%2Fc6%2F10831124_10831124_1331292126625_mthumb.jpg',
         count: 873,
-        rate: 4
+        rate: 4,
+        id: '3'
       }
     ])
 
@@ -172,6 +179,17 @@ export default defineComponent({
       ]
     })
 
+    const navigationToDetails = (data: any) => {
+      const { id } = data
+
+      router.push({
+        path: '/details',
+        query: {
+          id
+        }
+      })
+    }
+
     return {
       storeData,
       searchValue,
@@ -179,7 +197,8 @@ export default defineComponent({
       popularDestinationData,
       localData,
       onlineCelebrityData,
-      likeImages
+      likeImages,
+      navigationToDetails
     }
   },
   components: {

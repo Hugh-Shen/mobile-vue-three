@@ -9,6 +9,7 @@ export interface LocalType {
   img: string;
   count: number | string;
   rate: number | string;
+  id: number | string;
 }
 
 export interface OnlineCelebrityType {
