@@ -17,7 +17,7 @@ export interface OnlineCelebrityType {
   site: string;
   img: string;
   avatar: string;
-  like: number | string;
-  has: boolean;
+  like: boolean;
+  count: number | string;
   list?: Array<object>;
 }

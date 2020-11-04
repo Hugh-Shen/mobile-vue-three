@@ -58,9 +58,10 @@
             <div class="online-celebrity-container-right">
               <img :src="onlineCelebrityData.avatar" alt="">
               <p>{{ onlineCelebrityData.nickname }}</p>
-              <div class="like-container">
-                <img :src="[onlineCelebrityData.has ? likeImages.active : likeImages.defalut]" alt="">
-                <p>{{ onlineCelebrityData.like }}</p>
+              <div class="like-container" @click="setLike(onlineCelebrityData)">
+                <Animation :show="onlineCelebrityData.like" />
+                <img :src="[onlineCelebrityData.like ? likeImages.active : likeImages.defalut]" alt="">
+                <p>{{ onlineCelebrityData.count }}</p>
               </div>
             </div>
           </div>
@@ -109,6 +110,7 @@ import { defineComponent, ref, reactive } from 'vue'
 import { useRouter } from 'vue-router'
 import PopularDestination from '@/components/PopularDestination.vue'
 import Paisajes from '@/components/Paisajes.vue'
+import Animation from '@/components/Animation.vue'
 import { PopularDestinationType, LocalType, OnlineCelebrityType } from '@/api/home'
 
 export default defineComponent({
@@ -159,8 +161,8 @@ export default defineComponent({
       site: '日本 名古屋',
       img: 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=874238546,3629119602&fm=26&gp=0.jpg',
       avatar: 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=301987003,3127153161&fm=26&gp=0.jpg',
-      like: 9999,
-      has: false,
+      count: 9999,
+      like: false,
       list: [
         {
           nickname: 'Angel Wang',
@@ -189,6 +191,9 @@ export default defineComponent({
         }
       })
     }
+    const setLike = (status: OnlineCelebrityType) => {
+      status.like = !status.like
+    }
 
     return {
       storeData,
@@ -198,12 +203,14 @@ export default defineComponent({
       localData,
       onlineCelebrityData,
       likeImages,
-      navigationToDetails
+      navigationToDetails,
+      setLike
     }
   },
   components: {
     PopularDestination,
-    Paisajes
+    Paisajes,
+    Animation
   }
 })
 </script>
