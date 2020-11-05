@@ -2,7 +2,7 @@
   <div class="home">
     <div class="home-header">
       <div class="home-header-site">
-        <span>杭州</span>
+        <span>{{ city }}</span>
         <div class="triangle"></div>
       </div>
       <van-search
@@ -111,20 +111,32 @@ import { useRouter } from 'vue-router'
 import PopularDestination from '@/components/PopularDestination.vue'
 import Paisajes from '@/components/Paisajes.vue'
 import Animation from '@/components/Animation.vue'
+import AMapLoader from '@amap/amap-jsapi-loader'
 import { PopularDestinationType, LocalType, OnlineCelebrityType } from '@/api/home'
 
 export default defineComponent({
   name: 'Home',
   setup () {
     const router = useRouter()
-    const storeData = ref('hello world')
     const searchValue = ref('')
     const active = ref(0)
-
+    const city = ref(null)
     const likeImages = {
       active: require('@/assets/images/likeActive.png'),
       defalut: require('@/assets/images/like.png')
     }
+    AMapLoader.load({
+      key: '37ffb743560aa8daa7edd40ded2313b4', // 申请好的Web端开发者Key，首次调用 load 时必填
+      version: '2.0',
+      plugins: ['AMap.Geolocation']
+    }).then(AMap => {
+      new AMap.Geolocation().getCityInfo((status: any, result: any) => {
+        const { city: mapCity } = result
+        const index = mapCity.indexOf('市')
+        city.value = mapCity.slice(0, index)
+        console.log('weizhi', result)
+      })
+    })
 
     const popularDestinationData = reactive<PopularDestinationType>({
       img: 'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2563930385,406813023&fm=26&gp=0.jpg',
@@ -196,9 +208,9 @@ export default defineComponent({
     }
 
     return {
-      storeData,
       searchValue,
       active,
+      city,
       popularDestinationData,
       localData,
       onlineCelebrityData,
@@ -302,6 +314,7 @@ export default defineComponent({
                 align-self: flex-end;
                 width: 100px;
                 text-align: center;
+                position: relative;
                 & > img {
                   width: 48px;
                   height: 48px;

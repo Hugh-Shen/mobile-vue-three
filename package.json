@@ -11,6 +11,7 @@
     "lint"
   ],
   "dependencies": {
+    "@amap/amap-jsapi-loader": "^0.0.7",
     "@types/js-cookie": "^2.2.6",
     "axios": "^0.21.0",
     "core-js": "^3.6.5",

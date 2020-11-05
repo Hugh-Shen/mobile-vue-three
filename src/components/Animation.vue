@@ -22,18 +22,19 @@ export default defineComponent({
 
 <style lang="scss" scoped>
   .animation-container {
-    position: relative;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    opacity: 0;
+    position: absolute;
+    animation: transform-animation 2s linear;
     & > img {
       width: 85px;
       height: 60px;
-      position: absolute;
-      top: 0;
-      right: 0;
-      opacity: 0;
-      animation: transform-animation 2s linear;
     }
     @keyframes transform-animation {
       0% {
+        top: 0px;
         opacity: 1;
       }
       20% {
@@ -41,17 +42,17 @@ export default defineComponent({
         transform: scale(.8);
       }
       50% {
-        top: -50px;
+        top: -40px;
         transform: scale(.5);
         opacity: .5;
       }
       70% {
-        top: -70px;
+        top: -60px;
         transform: scale(.5);
         opacity: .3;
       }
       100% {
-        top: -100px;
+        top: -80px;
         transform: scale(.1);
         opacity: 0;
       }
