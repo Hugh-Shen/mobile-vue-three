@@ -23,7 +23,11 @@
           <p>{{ newRecommendedData.destination }}</p>
           <p>{{ newRecommendedData.journey }}</p>
         </div>
-        <img class="navigation-icon" src="@/assets/images/navigation.png" alt="">
+        <img class="navigation-icon"
+          src="@/assets/images/navigation.png"
+          alt=""
+          @click="navigationToPathProject"
+        />
       </div>
     </div>
     <!-- 旅行日记-->
@@ -54,11 +58,13 @@
 
 <script lang="ts">
 import { defineComponent, reactive } from 'vue'
+import { useRouter } from 'vue-router'
 import { NewRecommendedType, TravelDiary } from '@/api/journey'
 
 export default defineComponent({
   name: 'Journey',
   setup () {
+    const router = useRouter()
     const attentionImages = {
       default: require('@/assets/images/watch.png'),
       active: require('@/assets/images/watchActive.png')
@@ -84,10 +90,17 @@ export default defineComponent({
       }
     ])
 
+    const navigationToPathProject = () => {
+      router.push({
+        path: '/map'
+      })
+    }
+
     return {
       attentionImages,
       newRecommendedData,
-      travelDiary
+      travelDiary,
+      navigationToPathProject
     }
   }
 })

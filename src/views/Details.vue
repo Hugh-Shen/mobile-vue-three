@@ -3,7 +3,7 @@
     <div class="details-header">
       <img class="background-img" :src="detailsData.img" alt="">
       <div class="back" @click="returnToThePreviousPage">
-        <img src="@/assets/images/rightArrowsIcon.png" alt="">
+        <img src="@/assets/images/leftArrowsIcon.png" alt="">
       </div>
       <div>
         <p>{{ detailsData.title.substring(0, 3) }}</p>

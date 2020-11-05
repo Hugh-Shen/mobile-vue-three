@@ -108,6 +108,7 @@
 <script lang="ts">
 import { defineComponent, ref, reactive } from 'vue'
 import { useRouter } from 'vue-router'
+import { useStore } from 'vuex'
 import PopularDestination from '@/components/PopularDestination.vue'
 import Paisajes from '@/components/Paisajes.vue'
 import Animation from '@/components/Animation.vue'
@@ -118,6 +119,7 @@ export default defineComponent({
   name: 'Home',
   setup () {
     const router = useRouter()
+    const store = useStore()
     const searchValue = ref('')
     const active = ref(0)
     const city = ref(null)
@@ -131,10 +133,10 @@ export default defineComponent({
       plugins: ['AMap.Geolocation']
     }).then(AMap => {
       new AMap.Geolocation().getCityInfo((status: any, result: any) => {
-        const { city: mapCity } = result
+        const { city: mapCity, position } = result
         const index = mapCity.indexOf('市')
         city.value = mapCity.slice(0, index)
-        console.log('weizhi', result)
+        store.commit('user/SET_LOCATION', position)
       })
     })
 
