@@ -11,7 +11,7 @@
         <span>03月09日</span>
       </div>
       <div class="trip-card-footer">
-        <div class="trip-card-footer-btn">搜索住宿</div>
+        <div class="trip-card-footer-btn" @click="pageNavigationEvent('/accommodation')">搜索住宿</div>
       </div>
     </div>
     <!-- 最新推荐 -->
@@ -26,7 +26,7 @@
         <img class="navigation-icon"
           src="@/assets/images/navigation.png"
           alt=""
-          @click="navigationToPathProject"
+          @click="pageNavigationEvent('/map')"
         />
       </div>
     </div>
@@ -90,9 +90,9 @@ export default defineComponent({
       }
     ])
 
-    const navigationToPathProject = () => {
+    const pageNavigationEvent = (routeUrl: string) => {
       router.push({
-        path: '/map'
+        path: routeUrl
       })
     }
 
@@ -100,7 +100,7 @@ export default defineComponent({
       attentionImages,
       newRecommendedData,
       travelDiary,
-      navigationToPathProject
+      pageNavigationEvent
     }
   }
 })

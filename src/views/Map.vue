@@ -128,7 +128,7 @@ export default defineComponent({
   }
 
   /deep/ .van-search {
-    background-color: none;
+    background-color: initial;
   }
   /deep/ .van-search__content--round {
     background-color: $color-white;
